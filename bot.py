@@ -37,8 +37,8 @@ async def on_message(msg: discord.Message):
     if msg.author.bot:
         print("bot :(")
         return 0
-    input = msg.content
-    input = (
+    messagecontent = msg.content
+    messagecontent = (
         input.casefold()
         .replace("'", "")
         .replace(",", "")
@@ -65,7 +65,7 @@ async def on_message(msg: discord.Message):
         .split()
     )
     # above code is so fucking great
-    for word in input:
+    for word in messagecontent:
         print(word)
         print(type(words))
         if word.strip() in words:
@@ -82,16 +82,6 @@ async def on_message(msg: discord.Message):
                     f"python error!!!! >///< NERDS ONLY: ||{type(e)}: {e}||"
                 )
             break  # :P
-
-
-@tree.command(name="ping")
-async def ping(interaction: discord.Interaction):
-    """
-    deaf
-    """
-    await interaction.response.send_message(
-        f"deaf\n\n{client.latency * 1000}ms :3", ephemeral=True
-    )
 
 
 dotenv.load_dotenv()
