@@ -31,6 +31,8 @@ async def on_ready():
 @client.event
 async def on_message(msg: discord.Message):
     await client.process_commands(msg)
+    if msg.channel.id != 1232165944168546346:
+        return
     print("omg message :3 :3 :3 :3")
     if msg.author.bot:
         print("bot :(")
