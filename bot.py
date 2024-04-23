@@ -21,7 +21,7 @@ with open("token.txt") as f:
 async def on_ready():
     for guild in client.guilds:
         # someone online said you shouldn't do this but fuck them
-        await tree.sync(guild)
+        await tree.sync(guild=guild)
     print("nya~ im ready!!!! :3 :3 :3 :3")
 
 
