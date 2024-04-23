@@ -11,7 +11,6 @@ load_dotenv()
 intents = discord.Intents.default()
 intents.message_content = True
 client = commands.Bot(command_prefix="[[", intents=intents)
-tree = client.tree
 with open("silly_words.json") as f:
     words = (
         list(
@@ -27,17 +26,17 @@ with open("silly_words.json") as f:
 
 @client.event
 async def on_ready():
-    for guild in client.guilds:
-        # someone online said you shouldn't do this but fuck them
-        await tree.sync(guild=guild)
     print("nya~ im ready!!!! :3 :3 :3 :3")
 
 
 @client.event
 async def on_message(msg: discord.Message):
     await client.process_commands(msg)
-    if msg.channel.id != 1232165944168546346:
-        return
+    if (
+        str(msg.channel.id) != os.getenv("CHANNEL_ID")
+        and not os.getenv("CHANNEL_ID") == "everywhere"
+    ):
+        return 0
     print("omg message :3 :3 :3 :3")
     if msg.author.bot:
         print("bot :(")
