@@ -21,7 +21,7 @@ with open("token.txt") as f:
 async def on_ready():
     for guild in client.guilds:
         # someone online said you shouldn't do this but fuck them
-        await tree.sync(guild=guild)
+        await tree.sync(guild)
     print("nya~ im ready!!!! :3 :3 :3 :3")
 
 
@@ -77,6 +77,16 @@ async def on_message(msg: discord.Message):
                     f"python error!!!! >///< NERDS ONLY: ||{type(e)}: {e}||"
                 )
             break  # :P
+
+
+@tree.command(name="ping")
+async def ping(interaction: discord.Interaction):
+    """
+    deaf
+    """
+    await interaction.response.send_message(
+        f"deaf\n\n{client.latency * 1000}ms :3", ephemeral=True
+    )
 
 
 client.run(token)
