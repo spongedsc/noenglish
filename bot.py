@@ -1,7 +1,8 @@
 import discord
+import dotenv
+import os
 import requests
 from discord.ext import commands
-import os
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -88,4 +89,5 @@ async def ping(interaction: discord.Interaction):
     )
 
 
+dotenv.load_dotenv()
 client.run(os.getenv("DISCORD_TOKEN"))
