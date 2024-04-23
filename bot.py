@@ -1,5 +1,6 @@
 import discord
 import dotenv
+import json
 import os
 import requests
 from discord.ext import commands
@@ -11,13 +12,17 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = commands.Bot(command_prefix="[[", intents=intents)
 tree = client.tree
-words = list(
-    requests.get(
-        "https://raw.githubusercontent.com/dwyl/english-words/master/words_dictionary.json"
-    )
-    .json()
-    .keys()
-)  # only use of requests im so good at this stuff
+with open("silly_words.json") as f:
+    words = (
+        list(
+            requests.get(
+                "https://raw.githubusercontent.com/dwyl/english-words/master/words_dictionary.json"
+            )
+            .json()
+            .keys()
+        )
+        + json.load(f)["words"]
+    )  # only use of requests im so good at this stuff
 
 
 @client.event
