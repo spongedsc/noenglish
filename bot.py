@@ -1,7 +1,6 @@
 import discord
 import requests
 from discord.ext import commands
-import os
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -14,6 +13,8 @@ words = list(
     .json()
     .keys()
 )  # only use of requests im so good at this stuff
+with open("token.txt") as f:
+    token = f.read()
 
 
 @client.event
@@ -88,4 +89,4 @@ async def ping(interaction: discord.Interaction):
     )
 
 
-client.run(os.getenv("DISCORD_TOKEN"))
+client.run(token)
