@@ -44,7 +44,7 @@ async def on_message(msg: discord.Message):
         return 0
     messagecontent = msg.content
     messagecontent = (
-        input.casefold()
+        messagecontent.casefold()
         .replace("'", "")
         .replace(",", "")
         .replace(".", "")
